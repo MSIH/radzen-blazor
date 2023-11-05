@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Components;
+using Radzen.Blazor.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -115,20 +116,29 @@ namespace Radzen.Blazor
         {
             get
             {
-                var availableWidth = Chart.CategoryScale.OutputSize - (Chart.CategoryAxis.Padding * 2);
-                var bands = VisibleColumnSeries.Cast<IChartColumnSeries>().Max(series => series.Count) + 2;
-                return availableWidth / bands;
+                var columnSeries = VisibleColumnSeries;
+
+                if (Chart.ColumnOptions.Width.HasValue)
+                {
+                    return Chart.ColumnOptions.Width.Value * columnSeries.Count + Chart.ColumnOptions.Margin * (columnSeries.Count - 1);
+                }
+                else
+                {
+                    var availableWidth = Chart.CategoryScale.OutputSize - (Chart.CategoryAxis.Padding * 2);
+                    var bands = columnSeries.Cast<IChartColumnSeries>().Max(series => series.Count) + 2;
+                    return availableWidth / bands;
+                }
             }
         }
 
         /// <inheritdoc />
         public override bool Contains(double x, double y, double tolerance)
         {
-            return DataAt(x, y) != null;
+            return DataAt(x, y).Item1 != null;
         }
 
         /// <inheritdoc />
-        protected override double TooltipX(TItem item)
+        internal override double TooltipX(TItem item)
         {
             var columnSeries = VisibleColumnSeries;
             var index = columnSeries.IndexOf(this);
@@ -142,7 +152,7 @@ namespace Radzen.Blazor
         }
 
         /// <inheritdoc />
-        protected override double TooltipY(TItem item)
+        internal override double TooltipY(TItem item)
         {
             var y = base.TooltipY(item);
             var ticks = Chart.ValueScale.Ticks(Chart.ValueAxis.TickDistance);
@@ -152,7 +162,7 @@ namespace Radzen.Blazor
         }
 
         /// <inheritdoc />
-        public override object DataAt(double x, double y)
+        public override (object, Point) DataAt(double x, double y)
         {
             var category = ComposeCategory(Chart.CategoryScale);
             var value = ComposeValue(Chart.ValueScale);
@@ -163,7 +173,7 @@ namespace Radzen.Blazor
             var index = columnSeries.IndexOf(this);
             var padding = Chart.ColumnOptions.Margin;
             var bandWidth = BandWidth;
-            var width = bandWidth / columnSeries.Count() - padding + padding / columnSeries.Count();
+            var width = Chart.ColumnOptions.Width ?? bandWidth / columnSeries.Count() - padding + padding / columnSeries.Count();
 
             foreach (var data in Items)
             {
@@ -175,11 +185,17 @@ namespace Radzen.Blazor
 
                 if (startX <= x && x <= endX && startY <= y && y <= endY)
                 {
-                    return data;
+                    return (data, new Point() { X = x, Y = y });
                 }
             }
 
-            return null;
+            return (null, null);
+        }
+
+        /// <inheritdoc />
+        public override IEnumerable<ChartDataLabel> GetDataLabels(double offsetX, double offsetY)
+        {
+            return base.GetDataLabels(offsetX, offsetY - 16);
         }
     }
 }

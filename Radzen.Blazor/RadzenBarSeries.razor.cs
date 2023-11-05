@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Components;
+using Radzen.Blazor.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -120,9 +121,18 @@ namespace Radzen.Blazor
         {
             get
             {
-                var availableHeight = Chart.ValueScale.OutputSize; // - (Chart.ValueAxis.Padding * 2);
-                var bands = VisibleBarSeries.Cast<IChartBarSeries>().Max(series => series.Count) + 2;
-                return availableHeight / bands;
+                var barSeries = VisibleBarSeries;
+
+                if (Chart.BarOptions.Height.HasValue)
+                {
+                    return Chart.BarOptions.Height.Value * barSeries.Count;
+                }
+                else
+                {
+                    var availableHeight = Chart.ValueScale.OutputSize; // - (Chart.ValueAxis.Padding * 2);
+                    var bands = barSeries.Cast<IChartBarSeries>().Max(series => series.Count) + 2;
+                    return availableHeight / bands;
+                }
             }
         }
 
@@ -137,11 +147,11 @@ namespace Radzen.Blazor
         /// <inheritdoc />
         public override bool Contains(double x, double y, double tolerance)
         {
-            return DataAt(x, y) != null;
+            return DataAt(x, y).Item1 != null;
         }
 
         /// <inheritdoc />
-        protected override double TooltipX(TItem item)
+        internal override double TooltipX(TItem item)
         {
             var value = Chart.CategoryScale.Compose(Value);
             var x = value(item);
@@ -163,7 +173,7 @@ namespace Radzen.Blazor
         }
 
         /// <inheritdoc />
-        public override object DataAt(double x, double y)
+        public override (object, Point) DataAt(double x, double y)
         {
             var value = ComposeValue(Chart.CategoryScale);
             var category = ComposeCategory(Chart.ValueScale);
@@ -186,15 +196,15 @@ namespace Radzen.Blazor
 
                 if (startX <= x && x <= endX && startY <= y && y <= endY)
                 {
-                    return data;
+                    return (data, new Point() { X = x, Y = y });
                 }
             }
 
-            return null;
+            return (null, null);
         }
 
         /// <inheritdoc />
-        protected override double TooltipY(TItem item)
+        internal override double TooltipY(TItem item)
         {
             var category = ComposeCategory(Chart.ValueScale);
             var barSeries = VisibleBarSeries;
@@ -205,6 +215,24 @@ namespace Radzen.Blazor
             var y = category(item) - bandHeight / 2 + index * height + index * padding;
 
             return y + height / 2;
+        }
+
+        /// <inheritdoc />
+        public override IEnumerable<ChartDataLabel> GetDataLabels(double offsetX, double offsetY)
+        {
+            var list = new List<ChartDataLabel>();
+
+            foreach (var d in Data)
+            {
+                list.Add(new ChartDataLabel 
+                { 
+                    Position = new Point() { X = TooltipX(d) + offsetX + 8, Y = TooltipY(d) + offsetY },
+                    TextAnchor = "start",
+                    Text = Chart.ValueAxis.Format(Chart.CategoryScale, Value(d))
+                });
+            }
+
+            return list;
         }
     }
 }

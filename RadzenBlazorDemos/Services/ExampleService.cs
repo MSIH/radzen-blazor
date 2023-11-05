@@ -17,6 +17,7 @@ namespace RadzenBlazorDemos
         {
             Name = "Dashboard",
             Path = "/dashboard",
+            Title = "Rich dasboard created with the Radzen Blazor components",
             Icon = "&#xe871"
         },
         new Example
@@ -36,6 +37,86 @@ namespace RadzenBlazorDemos
 
         new Example()
         {
+            Name = "UI Fundamentals",
+            Icon = "&#xe749",
+            Children = new [] {
+                new Example()
+                {
+                    Name = "Themes",
+                    Path = "themes",
+                    Title = "Blazor Themes",
+                    Icon = "&#xe40a",
+                    Tags = new[] { "theme", "color", "background", "border", "utility", "css", "var"}
+                },
+                new Example()
+                {
+                    Name = "Colors",
+                    Path = "colors",
+                    Title = "Blazor Theme Colors",
+                    Icon = "&#xe891",
+                    Tags = new[] { "color", "background", "border", "utility", "css", "var"}
+                },
+                new Example()
+                {
+                    Name = "Typography",
+                    Path = "typography",
+                    Title = "Blazor Text component",
+                    Icon = "&#xe264",
+                    Tags = new [] { "typo", "typography", "text", "paragraph", "header", "heading", "caption", "overline", "content" }
+                },
+                new Example()
+                {
+                    Name = "Icons",
+                    Title = "Blazor Icon component",
+                    Path = "icon",
+                    Icon = "&#xe148",
+                    Tags = new [] { "icon", "content" }
+                },
+                new Example()
+                {
+                    Name = "Borders",
+                    Path = "borders",
+                    Title = "Blazor Border styles",
+                    Icon = "&#xe3c6",
+                    Tags = new [] { "border", "utility", "css", "var"}
+                },
+                new Example()
+                {
+                    Name = "Shadows",
+                    Path = "shadows",
+                    Title = "Blazor Shadow styles",
+                    Icon = "&#xe595",
+                    Tags = new [] { "shadow", "utility", "css", "var"}
+                },
+                new Example()
+                {
+                    Name = "Ripple",
+                    Title = "Blazor Ripple effect",
+                    Path = "ripple",
+                    Icon = "&#xe39e",
+                    Tags = new [] { "ripple", "utility", "css", "var"}
+                },
+                new Example()
+                {
+                    Name = "Breakpoints",
+                    Title = "Blazor Responsive Breakpoints",
+                    Path = "breakpoints",
+                    Icon = "&#xe1b1",
+                    Tags = new [] { "breakpoints", "spacing", "margin", "padding", "gutter", "gap", "utility", "css", "responsive", "layout"}
+                },
+                new Example()
+                {
+                    Name = "Spacing",
+                    Title = "Blazor Spacing styles",
+                    Path = "spacing",
+                    Icon = "&#xe256",
+                    Tags = new [] { "spacing", "margin", "padding", "gutter", "gap", "utility", "css", "var"}
+                }
+            }
+        },
+
+        new Example()
+        {
             Name = "DataGrid",
             Updated = true,
             Icon = "&#xf1be",
@@ -48,6 +129,7 @@ namespace RadzenBlazorDemos
                         new Example
                         {
                             Name = "IQueryable",
+                            Title = "Blazor DataGrid commponent with code-less paging, sorting and filtering of IQueryable data sources",
                             Path = "datagrid",
                             Tags = new [] { "datatable", "datagridview", "dataview", "grid", "table" }
                         },
@@ -55,22 +137,29 @@ namespace RadzenBlazorDemos
                         {
                             Name = "LoadData event",
                             Path = "datagrid-loaddata",
-                            Title = "Blazor DataGrid custom data-binding",
+                            Title = "Blazor DataGrid custom data-binding via the LoadData event",
                             Tags = new [] { "datagrid", "bind", "load", "data", "loaddata", "custom" }
                         },
                         new Example
                         {
                             Name = "OData service",
                             Path = "datagrid-odata",
-                            Title = "Blazor DataGrid OData data-binding",
+                            Title = "Blazor DataGrid supports data-binding to OData",
                             Tags = new [] { "datagrid", "bind", "load", "data", "loaddata", "odata", "service", "rest" }
                         },
                         new Example
                         {
                             Name = "Dynamic data",
                             Path = "datagrid-dynamic",
-                            Title = "Blazor DataGrid binding dynamic data",
+                            Title = "Blazor DataGrid supports dynamic data sources",
                             Tags = new [] { "datagrid", "bind", "load", "data", "loaddata", "dynamic" }
+                        },
+                        new Example
+                        {
+                            Name = "Performance",
+                            Path = "datagrid-performance",
+                            Title = "Blazor DataGrid bound to large collection of data",
+                            Tags = new [] { "datagrid", "bind", "performance", "data", "large" }
                         },
                     }
                 },
@@ -107,7 +196,7 @@ namespace RadzenBlazorDemos
                         {
                             Name = "Template",
                             Path = "datagrid-column-template",
-                            Title = "Blazor DataGrid column template",
+                            Title = "Blazor DataGrid custom appearance via column templates",
                             Tags = new [] { "column", "template", "grid", "datagrid", "table"}
                         },
                         new Example
@@ -213,6 +302,7 @@ namespace RadzenBlazorDemos
                 new Example
                 {
                     Name = "Hierarchy",
+                    Updated = true,
                     Icon = "&#xe23e",
                     Children  = new []
                     {
@@ -227,8 +317,16 @@ namespace RadzenBlazorDemos
                         {
                             Name = "Hierarchy on demand",
                             Path = "master-detail-hierarchy-demand",
-                            Title = "Blazor DataGrid Hierarchy on demand",
+                            Title = "Blazor DataGrid hierarchy on demand",
                             Tags = new [] { "master", "detail", "datagrid", "table", "dataview", "on-demand" }
+                        },
+                        new Example
+                        {
+                            Name = "Self-reference hierarchy",
+                            New = true,
+                            Path = "datagrid-selfref-hierarchy",
+                            Title = "Blazor DataGrid self-reference hierarchy",
+                            Tags = new [] { "master", "detail", "datagrid", "table", "dataview", "hierarchy", "self-reference" }
                         },
                         new Example
                         {
@@ -258,8 +356,16 @@ namespace RadzenBlazorDemos
                             Updated = true,
                             Name = "Multiple selection",
                             Path = "datagrid-multiple-selection",
-                            Title = "Blazor DataGrid Multiple selection",
+                            Title = "Blazor DataGrid multiple selection",
                             Tags = new [] { "multiple", "selection", "datagrid", "table", "dataview" }
+                        },
+                        new Example
+                        {
+                            New = true,
+                            Name = "Cell selection",
+                            Path = "datagrid-cell-selection",
+                            Title = "Blazor DataGrid cell selection",
+                            Tags = new [] { "cell", "selection", "datagrid", "table", "dataview" }
                         },
                     }
                 },
@@ -280,7 +386,7 @@ namespace RadzenBlazorDemos
                         {
                             Name = "Multiple Column Sorting",
                             Path = "datagrid-multi-sort",
-                            Title = "Blazor DataGrid multiple column sorting",
+                            Title = "Blazor DataGrid sorting by multiple columns",
                             Tags = new [] { "multi", "sort", "datagrid", "table", "dataview" }
                         },
                         new Example
@@ -335,7 +441,7 @@ namespace RadzenBlazorDemos
                             Updated = true,
                             Name = "Grouping API",
                             Path = "datagrid-grouping-api",
-                            Title = "Blazor DataGrid pager position",
+                            Title = "Blazor DataGrid grouping API",
                             Tags = new [] { "group", "grouping", "datagrid", "table", "dataview", "api" }
                         },
                         new Example
@@ -357,18 +463,83 @@ namespace RadzenBlazorDemos
                 },
                 new Example()
                 {
+                    Name = "Density",
+                    Path = "datagrid-density",
+                    Title = "Blazor DataGrid density",
+                    Icon = "&#xeb9e",
+                    Tags = new [] { "density", "compact", "small", "large", "tight" }
+                },
+                new Example()
+                {
+                    Name="Custom Header",
+                    Title = "Blazor DataGrid custom header",
+                    Icon = "&#xe051",
+                    Children = new [] {
+                      new Example
+                        {
+                            Name = "Header with button",
+                            Path="datagrid-custom-header",
+                            Title = "Blazor DataGrid grouping API",
+                            Tags = new [] { "grid header","header" }
+                        },
+                      new Example
+                        {
+                            Name = "Header with column picker",
+                            Path="datagrid-custom-header-columnpicker",
+                            Title = "Blazor DataGrid grouping API",
+                            Tags = new [] { "grid header","header" }
+                        }
+                    }
+                },
+                new Example()
+                {
+                    Name = "GridLines",
+                    Path = "datagrid-grid-lines",
+                    Title = "Blazor DataGrid grid lines",
+                    Icon = "&#xf016",
+                    Tags = new [] { "grid", "lines", "border", "gridlines" }
+                },
+                new Example()
+                {
                     Name = "Cell Context Menu",
                     Path = "datagrid-cell-contextmenu",
-                    Title = "Blazor DataGrid Cell Context Menu",
+                    Title = "Blazor DataGrid cell context menu",
                     Icon = "&#xe22b",
                     Tags = new [] { "cell", "row", "contextmenu", "menu", "rightclick" }
+                },
+
+                new Example
+                {
+                    Updated = true,
+                    Name = "Save/Load settings",
+                    Icon = "&#xf02e",
+                    Children = new []
+                    {
+                        new Example()
+                        {
+                            New = true,
+                            Name = "IQueryable",
+                            Path = "datagrid-save-settings",
+                            Title = "Blazor DataGrid save/load settings",
+                            Tags = new [] { "save", "load", "settings" }
+                        },
+
+                        new Example()
+                        {
+                            New = true,
+                            Name = "LoadData binding",
+                            Path = "datagrid-save-settings-loaddata",
+                            Title = "Blazor DataGrid save/load settings with LoadData",
+                            Tags = new [] { "save", "load", "settings", "async", "loaddata" }
+                        }
+                    }
                 },
 
                 new Example()
                 {
                     Name = "InLine Editing",
                     Path = "datagrid-inline-edit",
-                    Title = "Blazor DataGrid InLine Editing",
+                    Title = "Blazor DataGrid inline editing",
                     Icon = "&#xe22b",
                     Tags = new [] { "inline", "editor", "datagrid", "table", "dataview" }
                 },
@@ -377,7 +548,7 @@ namespace RadzenBlazorDemos
                 {
                     Name = "Conditional formatting",
                     Path = "datagrid-conditional-template",
-                    Title = "DataGrid conditional template",
+                    Title = "Blazor DataGrid conditional template",
                     Icon = "&#xe41d",
                     Tags = new [] { "conditional", "template", "style", "datagrid", "table", "dataview" }
                 },
@@ -393,7 +564,7 @@ namespace RadzenBlazorDemos
                 {
                     Name = "Cascading DropDowns",
                     Path = "cascading-dropdowns",
-                    Title = "Blazor Cascading DropDowns",
+                    Title = "Blazor cascading dropdowns",
                     Icon = "&#xe915",
                     Tags = new [] { "related", "parent", "child" }
                 },
@@ -401,7 +572,7 @@ namespace RadzenBlazorDemos
                 {
                     Name = "Empty Data Grid",
                     Path = "/datagrid-empty",
-                    Title = "Blazor DataGrid without Data",
+                    Title = "Blazor DataGrid without data",
                     Icon = "&#xe661",
                     Tags = new [] { "datagrid", "databinding" }
                 }
@@ -414,88 +585,136 @@ namespace RadzenBlazorDemos
             Icon = "&#xe1db",
             Children = new [] {
                 new Example()
-                {
-                    Name = "DataList",
-                    Updated = true,
-                    Path = "datalist",
+        {
+            Name = "DataList",
                     Icon = "&#xe896",
-                    Tags = new [] { "dataview", "grid", "table" }
+                    Tags = new[] { "dataview", "grid", "table" },
+                    Children = new[] {
+                        new Example
+                        {
+                            Name = "IQueryable",
+                            Title = "Blazor data list component",
+                            New = true,
+                            Path = "datalist",
+                            Tags = new [] { "dataview", "grid", "table", "list"},
+                        },
+                        new Example
+                        {
+                            Name = "OData service",
+                            Title = "Blazor data list with OData",
+                            New = true,
+                            Path = "datalist-loaddata",
+                            Tags = new [] { "dataview", "grid", "table", "list", "odata" },
+                        }
+                    }
                 },
                 new Example()
-                {
-                    Name = "Pager",
-                    Updated = true,
+        {
+            Name = "DataFilter",
+                    Icon = "&#xef4f",
+                    Tags = new[] { "dataview", "grid", "table", "filter" },
+                    Children = new[] {
+                        new Example
+                        {
+                            Name = "IQueryable",
+                            Title = "Blazor data filter component",
+                            Path = "datafilter",
+                            Tags = new [] { "dataview", "grid", "table", "filter" },
+                        },
+                        new Example
+                        {
+                            Name = "LoadData",
+                            Title = "Blazor data filter with LoadData",
+                            Path = "datafilter-loaddata",
+                            Tags = new [] { "dataview", "grid", "table", "filter", "loaddata" },
+                        },
+                        new Example
+                        {
+                            Name = "OData service",
+                            Title = "Blazor data filter with OData",
+                            Path = "datafilter-odata",
+                            Tags = new [] { "dataview", "grid", "table", "filter", "odata" },
+                        }
+                    }
+                },
+                new Example()
+        {
+            Name = "Pager",
+                    Title = "Blazor paging component",
                     Path = "pager",
                     Icon = "&#xe8be",
-                    Tags = new [] { "pager", "paging" }
+                    Tags = new[] { "pager", "paging" }
                 },
                 new Example()
-                {
-                    Name = "Scheduler",
+        {
+            Name = "Scheduler",
                     Path = "scheduler",
+                    Updated = true,
+                    Title = "Blazor scheduler component with daily, weekly and monthly views",
                     Icon = "&#xe616",
-                    Tags = new [] { "scheduler", "calendar", "event", "appointment"}
+                    Tags = new[] { "scheduler", "calendar", "event", "appointment" }
                 },
                 new Example()
-                {
-                    Name = "Tree",
+        {
+            Name = "Tree",
                     Icon = "&#xe8ef",
-                    Tags = new [] { "tree", "treeview", "nodes", "hierarchy" },
-                    Children = new [] {
+                    Tags = new[] { "tree", "treeview", "nodes", "hierarchy" },
+                    Children = new[] {
                         new Example
                         {
                             Name = "Inline definition",
+                            Title = "Blazor Tree component",
                             Path = "tree",
                             Tags = new [] { "tree", "treeview", "nodes", "inline" },
                         },
                         new Example
                         {
                             Name = "Data-binding",
+                            Title = "Blazor Tree data-binding",
                             Path = "tree-data-binding",
                             Tags = new [] { "tree", "treeview", "nodes", "data", "table" },
                         },
                         new Example
                         {
                             Name = "Files and directories",
+                            Title = "Blazor Tree data-binding to files and directories",
                             Path = "tree-file-system",
                             Tags = new [] { "tree", "treeview", "nodes", "file", "directory" },
                         },
                         new Example
                         {
                             Name = "Selection",
+                            Title = "Blazor Tree selection",
                             Path = "tree-selection",
                             Tags = new [] { "tree", "treeview", "nodes", "selection" },
                         },
                         new Example
                         {
                             Name = "Checkboxes",
+                            Title = "Blazor Tree tri-state checkboxes",
                             Path = "tree-checkboxes",
                             Tags = new [] { "tree", "treeview", "nodes", "check" },
                         }
                     }
                 },
             }
-        },
+},
         new Example()
         {
             Name = "Images",
             Icon = "&#xe3d3",
-            Children = new [] {
+            Children = new[] {
                 new Example()
                 {
                     Name = "Gravatar",
+                    Title = "Blazor Gravatar component",
                     Path = "gravatar",
                     Icon = "&#xe420"
                 },
                 new Example()
                 {
-                    Name = "Icon",
-                    Path = "icon",
-                    Icon = "&#xe148"
-                },
-                new Example()
-                {
                     Name = "Image",
+                    Title = "Blazor Image component",
                     Path = "image",
                     Icon = "&#xe3c4"
                 },
@@ -503,74 +722,141 @@ namespace RadzenBlazorDemos
         },
         new Example()
         {
-            Name="Layout & Navigation",
+            Name = "Layout",
+            Updated = true,
             Icon = "&#xe8f1",
-            Children = new [] {
+            Children = new[] {
                 new Example()
                 {
-                    Name = "Accordion",
-                    Path = "accordion",
-                    Icon = "&#xe8ee",
-                    Tags = new [] { "panel", "container" }
+                    Name = "Layout",
+                    Title = "Blazor Layout component",
+                    Path = "layout",
+                    Icon = "&#xe8f1",
+                    Tags = new [] { "layout", "sidebar", "drawer", "header", "body", "footer" }
                 },
                 new Example()
                 {
-                    Name = "BreadCrumb",
-                    New = true,
-                    Path = "breadcrumb",
-                    Icon = "&#xeac9",
-                    Tags = new [] { "breadcrumb", "navigation", "menu" }
+                    Name = "Stack",
+                    Title = "Blazor Stack component",
+                    Path = "stack",
+                    Icon = "&#xe8f2",
+                    Tags = new [] { "stack", "layout" }
+                },
+                new Example()
+                {
+                    Name = "Row",
+                    Title = "Blazor Row component",
+                    Path = "row",
+                    Icon = "&#xf101",
+                    Tags = new [] { "row", "layout", "responsive", "grid" }
+                },
+                new Example()
+                {
+                    Name = "Column",
+                    Title = "Blazor Column component",
+                    Path = "column",
+                    Icon = "&#xe8ec",
+                    Tags = new [] { "column", "col", "layout", "responsive", "grid" }
                 },
                 new Example()
                 {
                     Name = "Card",
+                    Title = "Blazor Card component",
+                    Updated = true,
                     Path = "card",
                     Icon = "&#xe919",
                     Tags = new [] { "container" }
                 },
                 new Example()
                 {
-                    Name = "ContextMenu",
-                    Path = "contextmenu",
-                    Icon = "&#xe8de",
-                    Tags = new [] { "popup", "dropdown", "menu" }
-                },
-                new Example()
-                {
                     Name = "Dialog",
+                    Title = "Blazor Dialog component",
                     Path = "dialog",
                     Icon = "&#xe8a7",
-                    Tags = new [] { "popup", "window" }
-                },
-                new Example()
-                {
-                    Name = "Link",
-                    Path = "link",
-                    Icon = "&#xe157"
-                },
-                new Example()
-                {
-                    Name = "Login",
-                    Path = "login",
-                    Icon = "&#xe8e8"
-                },
-                new Example()
-                {
-                    Name = "Menu",
-                    Path = "menu",
-                    Icon = "&#xe91a",
-                    Tags = new [] { "navigation", "dropdown" }
+                    Tags = new [] { "popup", "window" },
                 },
                 new Example()
                 {
                     Name = "Panel",
+                    Title = "Blazor Panel component",
                     Path = "panel",
                     Icon = "&#xe14f",
                     Tags = new [] { "container" }
                 },
                 new Example()
                 {
+                    Name = "Splitter",
+                    Title = "Blazor Splitter component",
+                    Path = "splitter",
+                    Icon = "&#xe94f",
+                    Tags = new [] { "splitter", "layout"}
+                },
+                new Example()
+                {
+                    New = true,
+                    Name = "Popup",
+                    Title = "Blazor Popup component",
+                    Path = "popup",
+                    Icon = "&#xe0cb",
+                    Tags = new [] { "popup", "dropdown"}
+                }
+            }
+        },
+        new Example()
+        {
+            Name = "Navigation",
+            Icon = "&#xe762",
+            Children = new[] {
+                new Example()
+                {
+                    Name = "Accordion",
+                    Path = "accordion",
+                    Title = "Blazor Accordion component",
+                    Icon = "&#xe8ee",
+                    Tags = new [] { "panel", "container" }
+                },
+                new Example()
+                {
+                    Name = "BreadCrumb",
+                    Title = "Blazor BreadCrumb component",
+                    Path = "breadcrumb",
+                    Icon = "&#xeac9",
+                    Tags = new [] { "breadcrumb", "navigation", "menu" }
+                },
+                new Example()
+                {
+                    Name = "ContextMenu",
+                    Title = "Blazor Context menu component",
+                    Path = "contextmenu",
+                    Icon = "&#xe8de",
+                    Tags = new [] { "popup", "dropdown", "menu" }
+                },
+                new Example()
+                {
+                    Name = "Link",
+                    Title = "Blazor Link component",
+                    Path = "link",
+                    Icon = "&#xe157"
+                },
+                new Example()
+                {
+                    Name = "Login",
+                    Title = "Blazor Login component",
+                    Path = "login",
+                    Icon = "&#xe8e8"
+                },
+                new Example()
+                {
+                    Name = "Menu",
+                    Title = "Blazor Menu component",
+                    Path = "menu",
+                    Icon = "&#xe91a",
+                    Tags = new [] { "navigation", "dropdown" }
+                },
+                new Example()
+                {
                     Name = "PanelMenu",
+                    Title = "Blazor PanelMenu component",
                     Path = "panelmenu",
                     Icon = "&#xe8d2",
                     Tags = new [] { "navigation", "menu" }
@@ -578,20 +864,15 @@ namespace RadzenBlazorDemos
                 new Example()
                 {
                     Name = "ProfileMenu",
+                    Title = "Blazor ProfileMenu component",
                     Path = "profile-menu",
                     Icon = "&#xe851",
                     Tags = new [] { "navigation", "dropdown", "menu" }
                 },
                 new Example()
                 {
-                    Name = "Splitter",
-                    Path = "splitter",
-                    Icon = "&#xe94f",
-                    Tags = new [] { "splitter"}
-                },
-                new Example()
-                {
                     Name = "Steps",
+                    Title = "Blazor Steps component",
                     Path = "steps",
                     Icon = "&#xe044",
                     Tags = new [] { "step", "steps", "wizard" }
@@ -599,6 +880,7 @@ namespace RadzenBlazorDemos
                 new Example()
                 {
                     Name = "Tabs",
+                    Title = "Blazor Tabs component",
                     Path = "tabs",
                     Icon = "&#xe8d8",
                     Tags = new [] { "tabstrip", "tabview", "container" }
@@ -609,24 +891,35 @@ namespace RadzenBlazorDemos
         {
             Name = "Forms",
             Icon = "&#xf1c1",
-            Children = new [] {
+            Children = new[] {
                 new Example()
                 {
                     Name = "AutoComplete",
                     Path = "autocomplete",
+                    Title = "Blazor AutoComplete textbox component",
                     Icon = "&#xe03b",
                     Tags = new [] { "form", "complete", "suggest", "edit" }
                 },
                 new Example()
                 {
                     Name = "Button",
+                    Title = "Blazor Button component",
                     Path = "button",
-                    Icon = "&#xe86d"
+                    Icon = "&#xf1c1"
+                },
+                new Example()
+                {
+                    Name = "ToggleButton",
+                    Title = "Blazor ToggleButton component",
+                    Path = "toggle-button",
+                    Icon = "&#xe8e0",
+                    Tags = new [] { "button", "switch", "toggle" }
                 },
                 new Example()
                 {
                     Name = "CheckBox",
                     Path = "checkbox",
+                    Title = "Blazor checkbox component with optional tri-state support",
                     Icon = "&#xe86c",
                     Tags = new [] { "form", "edit" }
                 },
@@ -634,12 +927,14 @@ namespace RadzenBlazorDemos
                 {
                     Name = "CheckBoxList",
                     Path = "checkboxlist",
+                    Title = "Blazor Checkbox list component",
                     Icon = "&#xe065",
                     Tags = new [] { "form", "edit" }
                 },
                 new Example()
                 {
                     Name = "ColorPicker",
+                    Title = "Blazor Colorpicker component",
                     Path = "colorpicker",
                     Icon = "&#xe40a",
                     Tags = new [] { "form", "edit" }
@@ -647,6 +942,7 @@ namespace RadzenBlazorDemos
                 new Example()
                 {
                     Name = "DatePicker",
+                    Title = "Blazor Datepicker component with calendar mode",
                     Path = "datepicker",
                     Icon = "&#xe916",
                     Tags = new [] { "calendar", "form", "edit" }
@@ -654,14 +950,63 @@ namespace RadzenBlazorDemos
                 new Example()
                 {
                     Name = "DropDown",
-                    Path = "dropdown",
                     Icon = "&#xe875",
-                    Tags = new [] { "select", "picker", "form" , "edit" }
+                    Children = new [] {
+                        new Example()
+                        {
+                            Updated = true,
+                            Name = "Single selection",
+                            Path = "dropdown",
+                            Title = "Blazor DropDown component",
+                            Tags = new [] { "select", "picker", "form" , "edit", "dropdown" },
+                        },
+                        new Example()
+                        {
+                            Updated = true,
+                            Name = "Multiple selection",
+                            Path = "dropdown-multiple",
+                            Title = "Blazor DropDown component with multiple selection support",
+                            Tags = new [] { "select", "picker", "form" , "edit", "multiple", "dropdown" },
+                        },
+                        new Example()
+                        {
+                            Updated = true,
+                            Name = "Virtualization",
+                            Path = "dropdown-virtualization",
+                            Title = "Blazor DropDown component with virtualization",
+                            Tags = new [] { "select", "picker", "form" , "edit", "multiple", "dropdown", "virtualization", "paging" },
+                        },
+                        new Example()
+                        {
+                            Updated = true,
+                            Name = "Filtering",
+                            Path = "dropdown-filtering",
+                            Title = "Blazor DropDown component with filtering",
+                            Tags = new [] { "select", "picker", "form" , "edit", "multiple", "dropdown", "filter" },
+                        },
+                        new Example()
+                        {
+                            Updated = true,
+                            Name = "Grouping",
+                            Path = "dropdown-grouping",
+                            Title = "Blazor DropDown component with grouping",
+                            Tags = new [] { "select", "picker", "form" , "edit", "multiple", "dropdown", "grouping" },
+                        },
+                        new Example()
+                        {
+                            Updated = true,
+                            Name = "Custom objects binding",
+                            Path = "dropdown-custom-objects",
+                            Title = "Blazor DropDown component binding to custom objects",
+                            Tags = new [] { "select", "picker", "form" , "edit", "dropdown", "custom" },
+                        },
+                    }
                 },
                 new Example()
                 {
                     Name = "DropDownDataGrid",
                     Path = "dropdown-datagrid",
+                    Title = "Blazor DropDown component with columns and multiple selection support",
                     Icon = "&#xe8b0",
                     Tags = new [] { "select", "picker", "form", "edit" }
                 },
@@ -669,6 +1014,7 @@ namespace RadzenBlazorDemos
                 {
                     Name = "Fieldset",
                     Path = "fieldset",
+                    Title = "Blazor fieldset component",
                     Icon = "&#xe850",
                     Tags = new [] { "form", "container" }
                 },
@@ -676,8 +1022,18 @@ namespace RadzenBlazorDemos
                 {
                     Name = "FileInput",
                     Path = "fileinput",
+                    Title = "Blazor File input component with preview support",
                     Icon = "&#xe226",
                     Tags = new [] { "upload", "form", "edit" }
+                },
+                new Example()
+                {
+                    Name = "FormField",
+                    Path = "form-field",
+                    Title = "Blazor form field component",
+                    Icon = "&#xe578",
+                    New = true,
+                    Tags = new [] { "form", "label", "floating", "float", "edit", "outline", "input", "helper", "valid" }
                 },
                 new Example()
                 {
@@ -688,14 +1044,14 @@ namespace RadzenBlazorDemos
                         {
                             Name = "Default Tools",
                             Path = "html-editor",
-                            Icon = "&#xe3c9",
+                            Title = "Blazor HTML editor component with lots of built-in tools",
                             Tags = new [] { "html", "editor", "rich", "text" }
                         },
                         new Example()
                         {
                             Name = "Custom Tools",
                             Path = "html-editor-custom-tools",
-                            Icon = "&#xe8b8",
+                            Title = "Blazor HTML editor component with custom tools",
                             Tags = new [] { "html", "editor", "rich", "text", "tool", "custom" }
                         },
                     }
@@ -705,12 +1061,14 @@ namespace RadzenBlazorDemos
                     Name = "ListBox",
                     Path = "listbox",
                     Icon = "&#xe8ef",
+                    Title = "Blazor listbox component",
                     Tags = new [] { "select", "picker", "form", "edit" }
                 },
                 new Example()
                 {
                     Name = "Mask",
                     Path = "mask",
+                    Title = "Blazor masked textbox component",
                     Icon = "&#xe262",
                     Tags = new [] { "input", "form", "edit", "mask" }
                 },
@@ -718,6 +1076,7 @@ namespace RadzenBlazorDemos
                 {
                     Name = "Numeric",
                     Path = "numeric",
+                    Title = "Blazor numeric textbox component",
                     Icon = "&#xe85b",
                     Tags = new [] { "input", "number", "form", "edit" }
                 },
@@ -725,13 +1084,15 @@ namespace RadzenBlazorDemos
                 {
                     Name = "Password",
                     Path = "password",
-                    Icon = "&#xe8a1",
+                    Title = "Blazor password textbox component",
+                    Icon = "&#xf042",
                     Tags = new [] { "input", "form", "edit" }
                 },
                 new Example()
                 {
                     Name = "RadioButtonList",
                     Path = "radiobuttonlist",
+                    Title = "Blazor radio button list component",
                     Icon = "&#xe837",
                     Tags = new [] { "toggle", "form", "edit" }
                 },
@@ -739,6 +1100,7 @@ namespace RadzenBlazorDemos
                 {
                     Name = "Rating",
                     Path = "rating",
+                    Title = "Blazor rating component",
                     Icon = "&#xe839",
                     Tags = new [] { "star", "form", "edit" }
                 },
@@ -746,6 +1108,7 @@ namespace RadzenBlazorDemos
                 {
                     Name = "SelectBar",
                     Path = "selectbar",
+                    Title = "Blazor selectbar component",
                     Icon = "&#xe86d",
                     Tags = new [] { "form", "edit" }
                 },
@@ -753,12 +1116,22 @@ namespace RadzenBlazorDemos
                 {
                     Name = "Slider",
                     Path = "slider",
+                    Title = "Blazor slider component",
                     Icon = "&#xe260",
                     Tags = new [] { "form", "slider" }
                 },
                 new Example()
                 {
+                    Name = "SpeechToTextButton",
+                    New = true,
+                    Title = "Blazor speech to text button component",
+                    Path = "speechtotextbutton",
+                    Icon = "&#xe029"
+                },
+                new Example()
+                {
                     Name = "SplitButton",
+                    Title = "Blazor split button component",
                     Path = "splitbutton",
                     Icon = "&#xe05f"
                 },
@@ -766,13 +1139,15 @@ namespace RadzenBlazorDemos
                 {
                     Name = "Switch",
                     Path = "switch",
-                    Icon = "&#xe8e0",
+                    Title = "Blazor switch component",
+                    Icon = "&#xe9f6",
                     Tags = new [] { "form", "edit", "switch" }
                 },
                 new Example()
                 {
                     Name = "TemplateForm",
                     Path = "templateform",
+                    Title = "Blazor template form component with validation support",
                     Icon = "&#xe06d",
                     Tags = new [] { "form", "edit" }
                 },
@@ -780,6 +1155,7 @@ namespace RadzenBlazorDemos
                 {
                     Name = "TextArea",
                     Path = "textarea",
+                    Title = "Blazor textarea component",
                     Icon = "&#xe873",
                     Tags = new [] { "input", "form", "edit" }
                 },
@@ -787,12 +1163,14 @@ namespace RadzenBlazorDemos
                 {
                     Name = "TextBox",
                     Path = "textbox",
+                    Title = "Blazor textbox component",
                     Icon = "&#xe890",
                     Tags = new [] { "input", "form", "edit" }
                 },
                 new Example()
                 {
                     Name = "Upload",
+                    Title = "Blazor upload component",
                     Path = "example-upload",
                     Icon = "&#xe2c6",
                     Tags = new [] { "upload", "file"}
@@ -803,60 +1181,130 @@ namespace RadzenBlazorDemos
         {
             Name = "Data Visualization",
             Icon = "&#xe4fb",
-            Children= new [] {
+            Children = new[] {
                 new Example
                 {
-                    Name = "Area Chart",
-                    Path = "area-chart",
-                    Icon = "&#xe251",
-                    Tags = new [] { "chart", "graph", "area" }
-                },
-                new Example
-                {
-                    Name = "Bar Chart",
-                    Path = "bar-chart",
-                    Icon = "&#xe164",
-                    Tags = new [] { "chart", "graph", "column", "bar" }
-                },
-                new Example
-                {
-                    Name = "Column Chart",
-                    Path = "column-chart",
-                    Icon = "&#xe24b",
-                    Tags = new [] { "chart", "graph", "column", "bar" }
-                },
-                new Example
-                {
-                    Name = "Donut Chart",
-                    Path = "donut-chart",
-                    Icon = "&#xe917",
-                    Tags = new [] { "chart", "graph", "donut" }
-                },
-                new Example
-                {
-                    Name = "Line Chart",
-                    Path = "line-chart",
+                    Name="Chart",
                     Icon = "&#xe922",
-                    Tags = new [] { "chart", "graph", "line" }
-                },
-                new Example
-                {
-                    Name = "Pie Chart",
-                    Path = "pie-chart",
-                    Icon = "&#xe6c4",
-                    Tags = new [] { "chart", "graph", "pie" }
-                },
-                new Example
-                {
-                    Name = "Styling Chart",
-                    Path = "styling-chart",
-                    Icon = "&#xe41d",
-                    Tags = new [] { "chart", "graph", "styling" }
+                    Updated = true,
+                    Children = new [] {
+                        new Example
+                        {
+                            Name = "Series",
+                            Path = "chart-series",
+                            Title = "Blazor chart component - Series configuration",
+                            Tags = new [] { "chart", "graph", "series" }
+                        },
+                        new Example
+                        {
+                            Name = "Area Chart",
+                            Path = "area-chart",
+                            Title = "Blazor area chart component",
+                            Tags = new [] { "chart", "graph", "area" }
+                        },
+                        new Example
+                        {
+                            Name = "Bar Chart",
+                            Path = "bar-chart",
+                            Title = "Blazor bar chart component",
+                            Tags = new [] { "chart", "graph", "column", "bar" }
+                        },
+                        new Example
+                        {
+                            Name = "Column Chart",
+                            Path = "column-chart",
+                            Title = "Blazor column chart component",
+                            Tags = new [] { "chart", "graph", "column", "bar" }
+                        },
+                        new Example
+                        {
+                            Name = "Donut Chart",
+                            Path = "donut-chart",
+                            Title = "Blazor donut chart component",
+                            Tags = new [] { "chart", "graph", "donut" }
+                        },
+                        new Example
+                        {
+                            Name = "Line Chart",
+                            Path = "line-chart",
+                            Title = "Blazor line chart component",
+                            Tags = new [] { "chart", "graph", "line" }
+                        },
+                        new Example
+                        {
+                            Name = "Pie Chart",
+                            Title = "Blazor pie chart component",
+                            Path = "pie-chart",
+                            Tags = new [] { "chart", "graph", "pie" }
+                        },
+                        new Example
+                        {
+                            Name = "Stacked Bar Chart",
+                            Path = "stacked-bar-chart",
+                            Title = "Blazor stacked bar chart component",
+                            Tags = new [] { "chart", "stack", "graph", "column", "bar" }
+                        },
+                        new Example
+                        {
+                            Name = "Stacked Column Chart",
+                            Path = "stacked-column-chart",
+                            Title = "Blazor stacked column chart component",
+                            Tags = new [] { "chart", "stack", "graph", "column", "bar" }
+                        },
+                        new Example
+                        {
+                            Name = "Axis",
+                            Path = "chart-axis",
+                            Title = "Blazor chart component - Axis configuration",
+                            Tags = new [] { "chart", "graph", "series" }
+                        },
+                        new Example
+                        {
+                            Name = "Legend",
+                            Path = "chart-legend",
+                            Title = "Blazor chart component - Legend configuration",
+                            Tags = new [] { "chart", "graph", "legend" }
+                        },
+                        new Example
+                        {
+                            Name = "ToolTip",
+                            Path = "chart-tooltip",
+                            Title = "Blazor chart component - ToolTip configuration",
+                            Tags = new [] { "chart", "graph", "legend" }
+                        },
+                        new Example
+                        {
+                            Name = "Trends",
+                            Path = "chart-trends",
+                            Tags = new [] { "chart", "trend", "median", "mean", "mode" }
+                        },
+                        new Example
+                        {
+                            Name = "Annotations",
+                            Path = "chart-annotations",
+                            Tags = new [] { "chart", "annotation", "label" }
+                        },
+                        new Example
+                        {
+                            Name = "Interpolation",
+                            Path = "chart-interpolation",
+                            New = true,
+                            Tags = new [] { "chart", "interpolation", "spline", "step" }
+                        },
+                        new Example
+                        {
+                            Name = "Styling Chart",
+                            Path = "styling-chart",
+                            Title = "Blazor chart styling",
+                            Tags = new [] { "chart", "graph", "styling" }
+                        },
+                    }
                 },
                 new Example
                 {
                     Name = "Arc Gauge",
                     Path = "arc-gauge",
+                    Title = "Blazor arc gauge component",
                     Icon = "&#xe3fc",
                     Tags = new [] { "gauge", "graph", "arc", "progress" }
                 },
@@ -864,6 +1312,7 @@ namespace RadzenBlazorDemos
                 {
                     Name = "Radial Gauge",
                     Path = "radial-gauge",
+                    Title = "Blazor radial gauge component",
                     Icon = "&#xe01b",
                     Tags = new [] { "gauge", "graph", "radial", "circle" }
                 },
@@ -871,8 +1320,18 @@ namespace RadzenBlazorDemos
                 {
                     Name = "Styling Gauge",
                     Path = "styling-gauge",
+                    Title = "Blazor gauge styling",
                     Icon = "&#xe41d",
                     Tags = new [] { "gauge", "graph", "styling" }
+                },
+                new Example
+                {
+                    Name = "Timeline",
+                    New = true,
+                    Path = "timeline",
+                    Title = "Blazor Timeline component",
+                    Icon = "&#xe00d",
+                    Tags = new [] { "timeline", "time", "line" }
                 },
                 new Example()
                 {
@@ -886,11 +1345,12 @@ namespace RadzenBlazorDemos
         {
             Name = "Feedback",
             Icon = "&#xe0cb",
-            Children = new [] {
+            Children = new[] {
                 new Example()
                 {
                     Name = "Badge",
                     Path = "badge",
+                    Title = "Blazor Badge component",
                     Icon = "&#xea67",
                     Tags = new[] { "badge", "link"}
                 },
@@ -898,19 +1358,55 @@ namespace RadzenBlazorDemos
                 {
                     Name = "Notification",
                     Path = "notification",
+                    Title = "Blazor Notification component",
                     Icon = "&#xe85a",
-                    Tags = new [] { "message", "alert" }
+                    Tags = new [] { "message", "notification" }
+                },
+                new Example()
+                {
+                    Name = "Alert",
+                    Title = "Blazor Alert component",
+                    Icon = "&#xe88e",
+                    Tags = new [] { "message", "alert" },
+                    Children = new [] {
+                        new Example
+                        {
+                            Name = "Alert Configuration",
+                            Title = "Blazor Alert component",
+                            Path = "alert",
+                            Tags = new [] { "message", "alert" },
+                        },
+                        new Example
+                        {
+                            Name = "Alert Styling",
+                            Title = "Blazor Alert styling",
+                            Path = "alert-styling",
+                            Tags = new [] { "message", "alert" },
+                        }
+                    }
                 },
                 new Example()
                 {
                     Name = "ProgressBar",
+                    Updated = true,
+                    Title = "Blazor progress bar component",
                     Path = "progressbar",
                     Icon = "&#xe893",
-                    Tags = new [] { "progress", "spinner" }
+                    Tags = new [] { "progress", "spinner", "bar", "linear" }
+                },
+                new Example()
+                {
+                    Name = "ProgressBarCircular",
+                    New = true,
+                    Title = "Blazor circular progress bar component",
+                    Path = "progressbarcircular",
+                    Icon = "&#xe5d5",
+                    Tags = new [] { "progress", "spinner", "circle", "circular" }
                 },
                 new Example()
                 {
                     Name = "Tooltip",
+                    Title = "Blazor tooltip component",
                     Path = "tooltip",
                     Icon = "&#xe8cd",
                     Tags = new [] { "popup", "tooltip" }
@@ -921,11 +1417,12 @@ namespace RadzenBlazorDemos
         {
             Name = "Validators",
             Icon = "&#xf1c2",
-            Children = new [] {
+            Children = new[] {
                 new Example()
                 {
                     Name = "CompareValidator",
                     Path = "comparevalidator",
+                    Title = "Blazor compare validator component",
                     Icon = "&#xe877",
                     Tags = new [] { "validator", "validation", "required", "compare"}
                 },
@@ -933,6 +1430,7 @@ namespace RadzenBlazorDemos
                 {
                     Name = "EmailValidator",
                     Path = "emailvalidator",
+                    Title = "Blazor email validator component",
                     Icon = "&#xe0be",
                     Tags = new [] { "validator", "validation", "required", "email"}
                 },
@@ -940,6 +1438,7 @@ namespace RadzenBlazorDemos
                 {
                     Name = "LengthValidator",
                     Path = "lengthvalidator",
+                    Title = "Blazor length validator component",
                     Icon = "&#xe915",
                     Tags = new [] { "validator", "validation", "required", "length"}
                 } ,
@@ -947,6 +1446,7 @@ namespace RadzenBlazorDemos
                 {
                     Name = "NumericRangeValidator",
                     Path = "numericrangevalidator",
+                    Title = "Blazor range validator component",
                     Icon = "&#xe3d0",
                     Tags = new [] { "validator", "validation", "required", "range"}
                 },
@@ -954,6 +1454,7 @@ namespace RadzenBlazorDemos
                 {
                     Name = "RegexValidator",
                     Path = "regexvalidator",
+                    Title = "Blazor regex validator component",
                     Icon = "&#xe53f",
                     Tags = new [] { "validator", "validation", "pattern", "regex", "regular", "expression"}
                 },
@@ -961,10 +1462,19 @@ namespace RadzenBlazorDemos
                 {
                     Name = "RequiredValidator",
                     Path = "requiredvalidator",
+                    Title = "Blazor required validator component",
                     Icon = "&#xe5ca",
                     Tags = new [] { "validator", "validation", "required"}
                 },
-
+                new Example()
+                {
+                    Name = "CustomValidator",
+                    New = true,
+                    Path = "customvalidator",
+                    Title = "Blazor custom validator component",
+                    Icon = "&#xe6b1",
+                    Tags = new [] { "validator", "validation", "custom", "unique"}
+                },
             }
         },
 
@@ -993,6 +1503,8 @@ namespace RadzenBlazorDemos
                            .Select(category => new Example
                            {
                                Name = category.Name,
+                               Path = category.Path,
+                               Icon = category.Icon,
                                Expanded = true,
                                Children = category.Children?.Where(deepFilter).Select(example => new Example
                                {
@@ -1024,12 +1536,12 @@ namespace RadzenBlazorDemos
                 return example.Title ?? $"Blazor {example.Name} | a free UI component by Radzen";
             }
 
-            return "Free Blazor Components | 60+ controls by Radzen";
+            return "Free Blazor Components | 70+ controls by Radzen";
         }
 
         public string DescriptionFor(Example example)
         {
-            return example?.Description ?? "The Radzen Blazor component library provides more than 50 UI controls for building rich ASP.NET Core web applications.";
+            return example?.Description ?? "The Radzen Blazor component library provides more than 70 UI controls for building rich ASP.NET Core web applications.";
         }
     }
 }

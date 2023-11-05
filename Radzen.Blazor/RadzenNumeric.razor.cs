@@ -19,6 +19,12 @@ namespace Radzen.Blazor
     public partial class RadzenNumeric<TValue> : FormComponent<TValue>
     {
         /// <summary>
+        /// Specifies additional custom attributes that will be rendered by the input.
+        /// </summary>
+        /// <value>The attributes.</value>
+        public IReadOnlyDictionary<string, object> InputAttributes { get; set; }
+
+        /// <summary>
         /// Gets input reference.
         /// </summary>
         protected ElementReference input;
@@ -26,7 +32,46 @@ namespace Radzen.Blazor
         /// <inheritdoc />
         protected override string GetComponentCssClass()
         {
-            return GetClassList("rz-spinner").ToString();
+            return GetClassList("rz-spinner")
+                                        .Add($"rz-text-align-{Enum.GetName(typeof(TextAlign), TextAlign).ToLower()}")
+                                        .ToString();
+        }
+
+        string GetInputCssClass()
+        {
+            return GetClassList("rz-spinner-input")
+                        .Add("rz-inputtext")
+                        .ToString();
+        }
+
+        private string getOnInput()
+        {
+            object minArg = Min;
+            object maxArg = Max;
+            string isNull = IsNullable.ToString().ToLower();
+            return (Min != null || Max != null) ? $@"Radzen.numericOnInput(event, {minArg ?? "null"}, {maxArg ?? "null"}, {isNull})" : "";
+        }
+
+        private string getOnPaste()
+        {
+            object minArg = Min;
+            object maxArg = Max;
+
+            return Min != null || Max != null ? $@"Radzen.numericOnPaste(event, {minArg ?? "null"}, {maxArg ?? "null"})" : "";
+        }
+
+        bool? isNullable;
+        bool IsNullable
+        {
+            get
+            {
+                if (isNullable == null)
+                {
+                    isNullable = typeof(TValue).IsGenericType && typeof(TValue).GetGenericTypeDefinition() == typeof(Nullable<>);
+                }
+
+                return isNullable.Value;
+            }
         }
 
         async System.Threading.Tasks.Task UpdateValueWithStep(bool stepUp)
@@ -89,7 +134,7 @@ namespace Radzen.Blazor
                     if (Format != null)
                     {
                         decimal decimalValue = (decimal)Convert.ChangeType(Value, typeof(decimal));
-                        return decimalValue.ToString(Format);
+                        return decimalValue.ToString(Format, Culture);
                     }
                     return Value.ToString();
                 }
@@ -162,7 +207,31 @@ namespace Radzen.Blazor
         /// </summary>
         /// <value><c>true</c> if input automatic complete is enabled; otherwise, <c>false</c>.</value>
         [Parameter]
-        public bool AutoComplete { get; set; } = true;
+        public bool AutoComplete { get; set; } = false;
+
+        /// <summary>
+        /// Gets or sets a value indicating the type of built-in autocomplete
+        /// the browser should use.
+        /// <see cref="Blazor.AutoCompleteType" />
+        /// </summary>
+        /// <value>
+        /// The type of built-in autocomplete.
+        /// </value>
+        [Parameter]
+        public AutoCompleteType AutoCompleteType { get; set; } = AutoCompleteType.On;
+
+        /// <summary>
+        /// Gets the autocomplete attribute's string value.
+        /// </summary>
+        /// <value>
+        /// <c>off</c> if the AutoComplete parameter is false or the
+        /// AutoCompleteType parameter is "off". When the AutoComplete
+        /// parameter is true, the value is <c>on</c> or, if set, the value of
+        /// AutoCompleteType.</value>
+        public string AutoCompleteAttribute
+        {
+            get => !AutoComplete ? "off" : AutoCompleteType.GetAutoCompleteValue();
+        }
 
         /// <summary>
         /// Gets or sets a value indicating whether up down buttons are shown.
@@ -170,6 +239,13 @@ namespace Radzen.Blazor
         /// <value><c>true</c> if up down buttons are shown; otherwise, <c>false</c>.</value>
         [Parameter]
         public bool ShowUpDown { get; set; } = true;
+
+        /// <summary>
+        /// Gets or sets the text align.
+        /// </summary>
+        /// <value>The text align.</value>
+        [Parameter]
+        public TextAlign TextAlign { get; set; } = TextAlign.Left;
 
         /// <summary>
         /// Handles the <see cref="E:Change" /> event.
@@ -187,22 +263,49 @@ namespace Radzen.Blazor
             {
                 valueStr = value.ToString();
             }
-            return new string(valueStr.Where(c => char.IsDigit(c) || char.IsPunctuation(c)).ToArray());
+
+            if (!string.IsNullOrEmpty(Format))
+            {
+                valueStr = valueStr.Replace(Format.Replace("#", "").Trim(), "");
+            }
+
+            return new string(valueStr.Where(c => char.IsDigit(c) || char.IsPunctuation(c)).ToArray()).Replace("%", "");
         }
+
+        /// <summary>
+        /// Gets or sets the function which returns TValue from string.
+        /// </summary>
+        [Parameter]
+        public Func<string, TValue> ConvertValue { get; set; }
 
         private async System.Threading.Tasks.Task InternalValueChanged(object value)
         {
             TValue newValue;
             try
             {
-                BindConverter.TryConvertTo<TValue>(RemoveNonNumericCharacters(value), Culture, out newValue);
+                if (ConvertValue != null)
+                {
+                    newValue = ConvertValue($"{value}");
+                }
+                else
+                {
+                    BindConverter.TryConvertTo<TValue>(RemoveNonNumericCharacters(value), Culture, out newValue);
+                }
             }
             catch
             {
                 newValue = default(TValue);
             }
 
-            decimal? newValueAsDecimal = newValue == null ? default(decimal?) : (decimal)ConvertType.ChangeType(newValue, typeof(decimal));
+            decimal? newValueAsDecimal;
+            try
+            {
+                newValueAsDecimal = newValue == null ? default(decimal?) : (decimal)ConvertType.ChangeType(newValue, typeof(decimal));
+            }
+            catch
+            {
+                newValueAsDecimal = default(TValue) == null ? default(decimal?) : (decimal)ConvertType.ChangeType(default(TValue), typeof(decimal));
+            }
 
             if (object.Equals(Value, newValue) && (!ValueChanged.HasDelegate || !string.IsNullOrEmpty(Format)))
             {
@@ -272,12 +375,11 @@ namespace Radzen.Blazor
             }
         }
 
-
-#if NET5
+#if NET5_0_OR_GREATER
         /// <summary>
         /// Sets the focus on the input element.
         /// </summary>
-        public async Task FocusAsync()
+        public override async ValueTask FocusAsync()
         {
             await input.FocusAsync();
         }

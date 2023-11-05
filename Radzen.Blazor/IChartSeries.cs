@@ -1,5 +1,9 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
+using Radzen.Blazor.Rendering;
 
 namespace Radzen.Blazor
 {
@@ -40,13 +44,21 @@ namespace Radzen.Blazor
         /// <returns>RenderFragment.</returns>
         RenderFragment Render(ScaleBase categoryScale, ScaleBase valueScale);
         /// <summary>
+        /// Renders the series overlays with the specified category and value scales.
+        /// </summary>
+        /// <param name="categoryScale">The category scale.</param>
+        /// <param name="valueScale">The value scale.</param>
+        /// <returns>RenderFragment.</returns>
+        RenderFragment RenderOverlays(ScaleBase categoryScale, ScaleBase valueScale);
+        /// <summary>
         /// Renders the series tooltip.
         /// </summary>
         /// <param name="data">The data.</param>
         /// <param name="marginLeft">The left margin.</param>
         /// <param name="marginTop">The right margin.</param>
+        /// <param name="chartHeight">Height of the whole char area.</param>
         /// <returns>RenderFragment.</returns>
-        RenderFragment RenderTooltip(object data, double marginLeft, double marginTop);
+        RenderFragment RenderTooltip(object data, double marginLeft, double marginTop, double chartHeight);
         /// <summary>
         /// Renders the legend item.
         /// </summary>
@@ -85,7 +97,35 @@ namespace Radzen.Blazor
         /// </summary>
         /// <param name="x">The x.</param>
         /// <param name="y">The y.</param>
-        object DataAt(double x, double y);
+        (object, Point) DataAt(double x, double y);
+        /// <summary>
+        /// Returns data chart position
+        /// </summary>
+        IEnumerable<ChartDataLabel> GetDataLabels(double offsetX, double offsetY);
+        /// <summary>
+        /// Returns series median
+        /// </summary>
+        double GetMedian();
+        /// <summary>
+        /// Returns series mean
+        /// </summary>
+        double GetMean();
+        /// <summary>
+        /// Returns series mode
+        /// </summary>
+        double GetMode();
+        /// <summary>
+        /// Returns series trend
+        /// </summary>
+        (double a, double b) GetTrend();
+        /// <summary>
+        /// Series coordinate system
+        /// </summary>
+        CoordinateSystem CoordinateSystem { get; }
+        /// <summary>
+        /// Series overlays
+        /// </summary>
+        IList<IChartSeriesOverlay> Overlays{ get; }
         /// <summary>
         /// Gets or sets the title of the series. The title is displayed in tooltips and the legend.
         /// </summary>

@@ -8,7 +8,7 @@ namespace Radzen.Blazor
     public partial class RadzenBreadCrumbItem : RadzenComponent
     {
         /// <summary>
-        /// Cascaded TEmplate Parameter from <see cref="RadzenBreadCrumb"/> Component
+        /// Cascaded Template Parameter from <see cref="RadzenBreadCrumb"/> Component
         /// </summary>
         [CascadingParameter]
         public RenderFragment<RadzenBreadCrumbItem> Template { get; set; }
@@ -30,6 +30,20 @@ namespace Radzen.Blazor
         /// </summary>
         [Parameter]
         public string Icon { get; set; }
+
+        /// <summary>
+        /// Gets or sets the icon color.
+        /// </summary>
+        /// <value>The icon color.</value>
+        [Parameter]
+        public string IconColor { get; set; }
+
+        /// <summary>
+        /// Template Parameter used only for this Item
+        /// Note: this overrides the <see cref="Template"/> Cascading Parameter
+        /// </summary>
+        [Parameter]
+        public RenderFragment ChildContent { get; set; }
 
         /// <inheritdoc/>
         protected override string GetComponentCssClass()
